@@ -17,7 +17,9 @@ defmodule Relytix.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/test", TestController, :index
   end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", Relytix do
