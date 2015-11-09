@@ -2,10 +2,12 @@ defmodule Relytix.EventController do
   use Relytix.Web, :controller
   require Logger
 
+  plug :fetch_session
+
   alias Relytix.Event
 
-  def create(conn, params) do
-    event_params = sanitized_params(params)
+  def create(conn, %{"_json" => [params]}) do
+    event_params = sanitized_params(conn, params)
     changeset = Event.changeset(%Event{}, event_params)
 
     case Relytix.Repo.upsert(Event, changeset) do
@@ -20,8 +22,9 @@ defmodule Relytix.EventController do
     end
   end
 
-  defp sanitized_params(params) do
+  defp sanitized_params(conn, params) do
     params
+    |> Map.put("visit_id", conn.cookies["ahoy_visit"])
     |> Map.put("time", date_from_unix_timestamp(params["time"]))
   end
 

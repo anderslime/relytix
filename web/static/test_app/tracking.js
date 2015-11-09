@@ -8,7 +8,7 @@
 
 /*jslint browser: true, indent: 2, plusplus: true, vars: true */
 
-(function (window) {
+export default function(window) {
   "use strict";
 
   var ahoy = window.ahoy || window.Ahoy || {};
@@ -281,5 +281,5 @@
     trackEvent(eventQueue[i]);
   }
 
-  window.ahoy = ahoy;
-}(window));
+  return ahoy;
+};

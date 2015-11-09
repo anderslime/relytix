@@ -1,14 +1,22 @@
-var ahoy = {
+import tracker from "./tracking"
+
+window.ahoy = {
   visitsUrl: "/api/visits",
   eventsUrl: "/api/events"
 };
-console.log("JHA");
+
+let trackerClient = tracker(window);
 
 $(document).ready(() => {
-  console.log("JIHA");
   $("#custom-event").submit((event) => {
-    console.log("HUHEJ");
     event.preventDefault();
-    console.log($(event.target).find("input[type='name']").val());
+
+    var eventName = $($(event.target).find("input[name='name']")).val();
+    var propertiesVal = $($(event.target).find("textarea[name='properties']")).val();
+    var properties = JSON.parse(propertiesVal);
+
+    trackerClient.track(eventName, properties);
   });
+
+  trackerClient.trackView();
 });

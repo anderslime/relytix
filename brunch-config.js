@@ -3,8 +3,8 @@ exports.config = {
   files: {
     javascripts: {
       joinTo: {
-       "js/app.js": /^(web\/static\/js)/,
-       "js/test_app.js": /^(web\/static\/test_app)/
+       "js/app.js": /^(web\/static\/js)|(deps)|(bower_components)/,
+       "js/test_app.js": /^(web\/static\/test_app)|(bower_components)/
       }
     },
     stylesheets: {
