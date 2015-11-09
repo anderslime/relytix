@@ -20,6 +20,7 @@ defmodule Relytix.Router do
     get "/test", TestController, :index
     get "/events", EventController, :index
 
+    resources "/dashboard", DashboardController
   end
 
 
