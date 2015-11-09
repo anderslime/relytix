@@ -13,7 +13,6 @@ config :logger, level: :warn
 config :relytix, Relytix.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
   database: "relytix_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
