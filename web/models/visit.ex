@@ -1,6 +1,8 @@
 defmodule Relytix.Visit do
   use Relytix.Web, :model
 
+  @primary_key {:id, :binary_id, []}
+
   schema "visits" do
     field :visitor_id, Ecto.UUID
     field :ip, :string
@@ -9,8 +11,8 @@ defmodule Relytix.Visit do
     timestamps
   end
 
-  @required_fields ~w(visitor_id ip)
-  @optional_fields ~w(id)
+  @required_fields ~w(visitor_id ip id)
+  @optional_fields ~w()
 
   @doc """
   Creates a changeset based on the `model` and `params`.

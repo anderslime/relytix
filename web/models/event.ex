@@ -1,6 +1,8 @@
 defmodule Relytix.Event do
   use Relytix.Web, :model
 
+  @primary_key {:id, :binary_id, []}
+
   schema "events" do
     field :visit_id, Ecto.UUID
     field :name, :string
@@ -10,7 +12,7 @@ defmodule Relytix.Event do
     timestamps
   end
 
-  @required_fields ~w(visit_id name properties time)
+  @required_fields ~w(visit_id name properties time id)
   @optional_fields ~w()
 
   @doc """
