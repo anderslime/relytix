@@ -2,11 +2,15 @@
   "repository": {},
   "dependencies": {
     "babel-brunch": "^5.1.1",
-    "bower": "^1.6.5",
     "brunch": "^1.8.5",
     "clean-css-brunch": ">= 1.0 < 1.8",
     "css-brunch": ">= 1.0 < 1.8",
-    "javascript-brunch": ">= 1.0 < 1.8",
+    "javascript-brunch": ">= 1.0 < 1.9",
+    "sass-brunch": "^1.9.1",
     "uglify-js-brunch": ">= 1.0 < 1.8"
+  },
+  "devDependencies": {
+    "bower": "^1.6.2",
+    "node-sass": "^3.3.3"
   }
 }
