@@ -1,4 +1,4 @@
-defmodule Relytix.VisitController do
+defmodule Relytix.Api.VisitController do
   use Relytix.Web, :controller
 
   plug :fetch_session

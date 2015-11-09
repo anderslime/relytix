@@ -1,4 +1,4 @@
-defmodule Relytix.EventController do
+defmodule Relytix.Api.EventController do
   use Relytix.Web, :controller
   require Logger
 

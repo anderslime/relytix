@@ -23,7 +23,7 @@ defmodule Relytix.Router do
 
 
   # Other scopes may use custom stacks.
-  scope "/api", Relytix do
+  scope "/api", Relytix.Api do
     pipe_through :api
     resources "/events", EventController, except: [:new, :edit]
     resources "/visits", VisitController, except: [:new, :edit]
