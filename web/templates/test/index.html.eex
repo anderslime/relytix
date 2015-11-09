@@ -1,1 +1,21 @@
 <h1>Hello</h1>
+
+<div class="well">
+  <h2>Custom Event</h2>
+
+  <form id="custom-event">
+    <div class="form-group">
+      <label>EventName</label>
+      <input type="text" name="name" class="form-control" placeholder="EventName">
+    </div>
+    <div class="form-group">
+      <label>Properties</label>
+      <textarea name="properties" class="form-control" rows="3">
+        {
+
+        }
+      </textarea>
+    </div>
+    <button type="submit">Hello</button>
+  </form>
+</div>
