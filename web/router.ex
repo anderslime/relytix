@@ -18,11 +18,14 @@ defmodule Relytix.Router do
 
     get "/", PageController, :index
     get "/test", TestController, :index
+
   end
 
 
   # Other scopes may use custom stacks.
-  # scope "/api", Relytix do
-  #   pipe_through :api
-  # end
+  scope "/api", Relytix do
+    pipe_through :api
+    resources "/events", EventController, except: [:new, :edit]
+    resources "/visits", VisitController, except: [:new, :edit]
+  end
 end

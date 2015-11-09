@@ -37,6 +37,7 @@ defmodule Relytix.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:dotenv, "~> 2.0.0", only: :dev},
+     {:dotenv, "~> 2.0.0", only: :dev},
      {:cowboy, "~> 1.0"}]
   end
 
