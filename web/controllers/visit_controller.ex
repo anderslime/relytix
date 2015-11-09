@@ -6,11 +6,11 @@ defmodule Relytix.VisitController do
   def create(conn, visit_params) do
     changeset = Visit.changeset(%Visit{}, visit_params)
 
-    case Repo.insert(changeset) do
+    case Relytix.Repo.upsert(changeset) do
       {:ok, visit} ->
         conn
         |> put_status(:created)
-        |> render("show.json", visit: visit)
+        |> json %{}
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

@@ -1,17 +1,18 @@
 defmodule Relytix.EventController do
   use Relytix.Web, :controller
+  require Logger
 
   alias Relytix.Event
 
-  def create(conn, event_params) do
-    params = sanitized_params(event_params)
+  def create(conn, params) do
+    event_params = sanitized_params(params)
     changeset = Event.changeset(%Event{}, event_params)
 
-    case Repo.insert(changeset) do
+    case Relytix.Repo.upsert(Event, changeset) do
       {:ok, event} ->
         conn
         |> put_status(:created)
-        |> render("show.json", event: event)
+        |> json %{}
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -30,6 +31,5 @@ defmodule Relytix.EventController do
   defp date_from_unix_timestamp(time) do
     time
     |> Relytix.UnixTimestamp.from_timestamp
-    |> Timex.Date.from
   end
 end
