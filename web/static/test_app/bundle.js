@@ -1,22 +1,11 @@
-import tracker from "./tracking"
+import testView from "./test_view"
+import eventView from "./event_view"
 
-window.ahoy = {
-  visitsUrl: "/api/visits",
-  eventsUrl: "/api/events"
+var App = {
+  test: testView,
+  event: eventView
 };
 
-let trackerClient = tracker(window);
-
-$(document).ready(() => {
-  $("#custom-event").submit((event) => {
-    event.preventDefault();
-
-    var eventName = $($(event.target).find("input[name='name']")).val();
-    var propertiesVal = $($(event.target).find("textarea[name='properties']")).val();
-    var properties = JSON.parse(propertiesVal);
-
-    trackerClient.track(eventName, properties);
-  });
-
-  trackerClient.trackView();
-});
+if (window.onAppLoad !== undefined) {
+  window.onAppLoad.call(this, App);
+}

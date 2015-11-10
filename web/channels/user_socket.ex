@@ -3,6 +3,7 @@ defmodule Relytix.UserSocket do
 
   ## Channels
   # channel "rooms:*", Relytix.RoomChannel
+  channel "events:lobby", Relytix.EventChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -12,6 +12,7 @@ defmodule Relytix.Api.EventController do
 
     case Relytix.Repo.upsert(Event, changeset) do
       {:ok, event} ->
+        Relytix.Endpoint.broadcast!("events:lobby", "new_msg", event_map(event))
         conn
         |> put_status(:created)
         |> json %{}
@@ -20,6 +21,10 @@ defmodule Relytix.Api.EventController do
         |> put_status(:unprocessable_entity)
         |> render(Relytix.ChangesetView, "error.json", changeset: changeset)
     end
+  end
+
+  defp event_map(event) do
+    %{name: event.name, id: event.id, properties: event.properties}
   end
 
   defp sanitized_params(conn, params) do

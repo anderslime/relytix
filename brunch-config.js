@@ -4,7 +4,7 @@ exports.config = {
     javascripts: {
       joinTo: {
        "js/app.js": /^(web\/static\/js)|(deps)|(bower_components)/,
-       "js/test_app.js": /^(web\/static\/test_app)|(bower_components)/
+       "js/test_app.js": /^(web\/static\/test_app)|(deps)|(bower_components)|(web\/static\/js\/socket)/
       }
     },
     stylesheets: {

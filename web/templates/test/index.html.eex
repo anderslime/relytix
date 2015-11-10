@@ -13,3 +13,9 @@
     <button type="submit">Hello</button>
   </form>
 </div>
+
+<script type="text/javascript">
+  window.onAppLoad = function(App) {
+    App.test();
+  };
+</script>
