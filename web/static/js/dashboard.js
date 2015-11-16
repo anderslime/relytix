@@ -23,7 +23,6 @@ export class Dashboard {
     $.ajax({
       url: "/api/queries/$view"
     }).done(function(data) {
-      console.log(data);
       obj.data = data;
       obj.dataLoaded = true;
       obj.checkReadyState();
