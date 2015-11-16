@@ -1,6 +1,7 @@
 defmodule Relytix.ViewModelServer do
   use GenServer
 
+  # Public API
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, :ok, [name: Dict.fetch!(opts, :name)])
   end
@@ -17,6 +18,7 @@ defmodule Relytix.ViewModelServer do
     GenServer.cast(server, {:process_event, event})
   end
 
+  # GenServer Behaviour
   def handle_call(:get, _from, {_, view_model} = state) do
     {:reply, view_model, state}
   end
@@ -26,6 +28,7 @@ defmodule Relytix.ViewModelServer do
     {:noreply, new_state}
   end
 
+  # Private API
   def do_process_event(view_model, highest_version, %{version: version} = _) when highest_version >= version do
     {highest_version, view_model}
   end
