@@ -19,7 +19,6 @@ defmodule Relytix.Router do
     get "/", PageController, :index
     get "/test", TestController, :index
     get "/events", EventController, :index
-
     resources "/dashboard", DashboardController
   end
 
