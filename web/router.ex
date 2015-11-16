@@ -29,5 +29,6 @@ defmodule Relytix.Router do
     pipe_through :api
     resources "/events", EventController, except: [:new, :edit]
     resources "/visits", VisitController, except: [:new, :edit]
+    resources "/queries", QueryController
   end
 end

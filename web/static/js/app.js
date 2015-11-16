@@ -17,5 +17,15 @@
 //
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
+import dashboard from "./dashboard"
 
 // import socket from "./socket"
+
+
+let App = {
+  dashboard: dashboard
+}
+
+if(window.onAppLoad != undefined) {
+  window.onAppLoad.call(this, App);
+}

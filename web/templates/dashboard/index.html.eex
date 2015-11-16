@@ -1,1 +1,12 @@
 <h1>Dashboard</h1>
+
+
+<script type="text/javascript">
+  window.onAppLoad = function(app) {
+    app.dashboard();
+  }
+</script>
+
+<div id="chart">
+
+</div>
