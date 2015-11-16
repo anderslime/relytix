@@ -24,3 +24,5 @@ erl_crash.dump
 /config/prod.secret.exs
 .env
 bower_components
+/config/dev.private.exs
+/config/test.private.exs

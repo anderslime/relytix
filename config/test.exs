@@ -9,10 +9,4 @@ config :relytix, Relytix.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-# Configure your database
-config :relytix, Relytix.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  database: "relytix_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+import_config "test.private.exs"

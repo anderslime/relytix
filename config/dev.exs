@@ -32,11 +32,4 @@ config :logger, :console, format: "[$level] $message\n"
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
 
-# Configure your database
-config :relytix, Relytix.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: System.get_env("DB_USERNAME"),
-  password: System.get_env("DB_PASSWORD"),
-  database: "relytix_dev",
-  hostname: "localhost",
-  pool_size: 10
+import_config "dev.private.exs"
