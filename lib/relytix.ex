@@ -7,12 +7,8 @@ defmodule Relytix do
     import Supervisor.Spec, warn: false
 
     children = [
-      # Start the endpoint when the application starts
       supervisor(Relytix.Endpoint, []),
-      # Start the Ecto repository
       worker(Relytix.Repo, []),
-      # Here you could define other workers and supervisors as children
-      # worker(Relytix.Worker, [arg1, arg2, arg3]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
