@@ -43,4 +43,15 @@ defmodule Relytix.ViewModelServerTest do
       "2015-5-10-12-20" => 1
     }
   end
+
+  test "processes multiple events" do
+    {:ok, server} = Relytix.ViewModelServer.start_link(name: :hello)
+    event1 = event_factory(1, datetime_in_minute(20))
+    event2 = event_factory(2, datetime_in_minute(20))
+    ViewModelServer.process_events(server, [event1, event2])
+    assert ViewModelServer.get(server) == %{
+      "2015-5-10-12-20" => 2
+    }
+    assert ViewModelServer.version(server) == 2
+  end
 end

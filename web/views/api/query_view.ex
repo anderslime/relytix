@@ -1,13 +1,17 @@
 defmodule Relytix.Api.QueryView do
   use Relytix.Web, :view
 
-  def render("index.json", %{params: params}) do
+  def render("index.json", %{events: events}) do
+    sorted_stuff =
+      Map.to_list(events)
+      |> Enum.sort(fn({date1, _}, {date2, _}) -> date1 < date2 end)
     %{series: %{
-        "Landing page": [1, 2, 5, 3, 8, 6, 10, 9, 7, 5, 8],
-        "Sign up": [3, 2, 1, 2, 4, 2, 1, 0, 2, 1, 0],
-        "About": [5, 4, 5, 6, 5, 4, 4, 3, 4, 3, 5]
+        "views": Enum.map(sorted_stuff, fn({_, v}) -> v end)
       },
-      columns: ["2015-11-01", "2015-11-02", "2015-11-03", "2015-11-04", "2015-11-05", "2015-11-06", "2015-11-07", "2015-11-08", "2015-11-09", "2015-11-10", "2015-11-11"]
+      columns: Enum.map(sorted_stuff, fn({k, _}) ->
+        {:ok, datetime} = Ecto.DateTime.cast(k)
+        datetime
+      end)
     }
   end
 end
