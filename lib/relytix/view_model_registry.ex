@@ -7,11 +7,7 @@ defmodule Relytix.ViewModelRegistry do
   end
 
   def ensure_view_model(key) do
-    case ViewModelServer.whereis(key) do
-      :undefined ->
-        Supervisor.start_child(__MODULE__, [key])
-      pid -> {:ok, pid}
-    end
+    Supervisor.start_child(__MODULE__, [key])
   end
 
   def init(:ok) do
