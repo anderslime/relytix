@@ -8,6 +8,7 @@ defmodule Relytix do
 
     children = [
       supervisor(Relytix.Endpoint, []),
+      supervisor(Relytix.ViewModelRegistry, []),
       worker(Relytix.Repo, []),
       # worker(Relytix.ViewModelServer, []),
     ]

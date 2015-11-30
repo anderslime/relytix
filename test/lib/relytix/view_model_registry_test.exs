@@ -12,7 +12,6 @@ defmodule Relytix.ViewModelRegistryTest do
 
   test "it restarts a view model if it is killed" do
     key = "pageviews"
-    {:ok, _} = ViewModelRegistry.start_link
     {:ok, pid} = ViewModelRegistry.ensure_view_model(key)
     Process.exit(pid, :kill)
     :timer.sleep 1 # LOL, uncertaincy # lol speling
