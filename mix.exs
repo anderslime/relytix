@@ -19,7 +19,7 @@ defmodule Relytix.Mixfile do
   def application do
     [mod: {Relytix, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :gproc]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,7 +37,8 @@ defmodule Relytix.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:dotenv, "~> 2.0.0", only: :dev},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:gproc, "~> 0.5"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

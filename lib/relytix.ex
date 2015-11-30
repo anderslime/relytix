@@ -9,7 +9,7 @@ defmodule Relytix do
     children = [
       supervisor(Relytix.Endpoint, []),
       worker(Relytix.Repo, []),
-      worker(Relytix.ViewModelServer, []),
+      # worker(Relytix.ViewModelServer, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

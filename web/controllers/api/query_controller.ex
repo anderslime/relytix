@@ -3,11 +3,12 @@ defmodule Relytix.Api.QueryController do
   require Logger
   alias Relytix.ViewModelServer
 
-  def index(conn, params) do
-    events = Relytix.Repo.all(Relytix.Event)
-    {:ok, server} = ViewModelServer.start_link
-    ViewModelServer.process_events(server, events)
-    events = ViewModelServer.get(server)
-    render conn, events: events
+  def show(conn, %{"id" => key}) do
+    events = Relytix.EventQueries.by_name(key)
+    ViewModelRegistry.ensure_view_model(key)
+    {:ok, _} = ViewModelServer.find_or_start(key)
+    ViewModelServer.process_events(key, events)
+    view_model_data = ViewModelServer.get(key)
+    render conn, events: view_model_data
   end
 end

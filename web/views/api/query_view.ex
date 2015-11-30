@@ -1,7 +1,7 @@
 defmodule Relytix.Api.QueryView do
   use Relytix.Web, :view
 
-  def render("index.json", %{events: events}) do
+  def render("show.json", %{events: events}) do
     sorted_stuff =
       Map.to_list(events)
       |> Enum.sort(fn({date1, _}, {date2, _}) -> date1 < date2 end)
