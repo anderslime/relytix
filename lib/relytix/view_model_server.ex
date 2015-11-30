@@ -43,9 +43,8 @@ defmodule Relytix.ViewModelServer do
   end
 
   # GenServer Behaviour
-
   def handle_call(:get, _from, {_, view_model} = state) do
-    {:reply, view_model, state}
+    {:reply, Relytix.TimeSeries.from_view_model(view_model), state}
   end
 
   def handle_call(:version, _from, {version, _} = state) do
@@ -87,6 +86,6 @@ defmodule Relytix.ViewModelServer do
   end
 
   defp minute_key(date) do
-    {{date.year, date.month, date.day}, {date.hour, date.min, 0}}
+    {{date.year, date.month, date.day}, {0, 0, 0}}
   end
 end

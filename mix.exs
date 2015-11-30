@@ -38,7 +38,8 @@ defmodule Relytix.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:dotenv, "~> 2.0.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:gproc, "~> 0.5"}]
+     {:gproc, "~> 0.5"},
+     {:timex_interval, "~> 0.6"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

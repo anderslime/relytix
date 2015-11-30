@@ -22,4 +22,5 @@
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"},
   "timex": {:hex, :timex, "0.19.5"},
   "timex_ecto": {:hex, :timex_ecto, "0.5.0"},
+  "timex_interval": {:hex, :timex_interval, "0.6.0"},
   "tzdata": {:hex, :tzdata, "0.5.4"}}

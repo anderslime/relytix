@@ -21,7 +21,7 @@ export class Dashboard {
 
     // Load chart data
     $.ajax({
-      url: "/api/queries"
+      url: "/api/queries/$view"
     }).done(function(data) {
       console.log(data);
       obj.data = data;
