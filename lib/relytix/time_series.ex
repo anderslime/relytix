@@ -2,6 +2,7 @@ defmodule Relytix.TimeSeries do
   use Timex
   alias TimexInterval.DateTimeInterval, as: Interval
 
+  def from_view_model(%{}), do: %{}
   def from_view_model(view_model) do
     dates = Dict.keys(view_model)
     first_date = dates |> Enum.min
