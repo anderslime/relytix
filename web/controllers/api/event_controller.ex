@@ -12,7 +12,7 @@ defmodule Relytix.Api.EventController do
 
     case Relytix.Repo.upsert(Event, changeset) do
       {:ok, event} ->
-        Relytix.Endpoint.broadcast!("events:lobby", "new_msg", event_map(event))
+        Relytix.Endpoint.broadcast!("events:#{event.name}", "new_msg", event_map(event))
         Relytix.ViewModelRegistry.ensure_view_model(event.name)
         Relytix.ViewModelServer.process_event(event.name, event)
         conn

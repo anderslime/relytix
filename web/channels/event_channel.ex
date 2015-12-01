@@ -1,7 +1,7 @@
 defmodule Relytix.EventChannel do
   use Relytix.Web, :channel
 
-  def join("events:lobby", payload, socket) do
+  def join("events:" <> event_name, payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
     else

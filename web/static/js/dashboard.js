@@ -1,3 +1,5 @@
+import {Socket} from "deps/phoenix/web/static/js/phoenix"
+
 export default function initializeDashboard() {
   var dashboard = new Dashboard();
 }
@@ -8,6 +10,7 @@ export class Dashboard {
     this.dataLoaded = false;
     this.chartLibraryLoaded = false;
     this.data = {};
+    this.eventType = "$view"
     var obj = this;
 
     // Load the Visualization API and the piechart package.
@@ -19,13 +22,18 @@ export class Dashboard {
       obj.checkReadyState();
     });
 
-    // Load chart data
+    this.setupSocketConnection();
+    setInterval($.proxy(this.loadChartData, this), 1000);
+  }
+
+  loadChartData() {
+    var _this = this;
     $.ajax({
-      url: "/api/queries/$view"
+      url: `/api/queries/${this.eventType}`
     }).done(function(data) {
-      obj.data = data;
-      obj.dataLoaded = true;
-      obj.checkReadyState();
+      _this.data = data;
+      _this.dataLoaded = true;
+      _this.checkReadyState();
     });
   }
 
@@ -37,7 +45,7 @@ export class Dashboard {
 
   drawCharts() {
     var dataTable = new google.visualization.DataTable();
-    dataTable.addColumn('date', 'Date');
+    dataTable.addColumn('datetime', 'Date');
 
 
     var rows = []
@@ -63,5 +71,19 @@ export class Dashboard {
     // Instantiate and draw our chart, passing in some options.
     var chart = new google.visualization.LineChart(document.getElementById('chart'));
     chart.draw(dataTable, options);
+  }
+
+  setupSocketConnection() {
+    this.socket = new Socket("/socket")
+    this.socket.connect()
+    this.channel = this.socket.channel(`events:${this.eventType}`, {})
+    this.channel.join()
+      .receive("ok", resp => { console.log("Joined successfully", resp) })
+      .receive("error", resp => { console.log("Unable to join", resp) })
+
+    var _this = this;
+    this.channel.on("new_msg", payload => {
+      this.loadChartData();
+    })
   }
 }
