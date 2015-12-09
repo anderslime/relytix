@@ -86,6 +86,6 @@ defmodule Relytix.ViewModelServer do
   end
 
   defp minute_key(date) do
-    {{date.year, date.month, date.day}, {date.hour, date.min, date.sec}}
+    {{date.year, date.month, date.day}, {0, 0, 0}}
   end
 end
