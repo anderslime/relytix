@@ -1,6 +1,8 @@
 defmodule Relytix.ViewModelServer do
   use GenServer
 
+  @data_retention_days 7
+
   # Public API
   def start_link(key) do
     IO.puts "START SERVER"
@@ -62,11 +64,10 @@ defmodule Relytix.ViewModelServer do
   end
 
   # Private API
-
   def do_process_events(events, state) do
     Enum.reduce(events, state, fn(event, {old_version, old_view_model}) ->
       do_process_event(old_view_model, old_version, event)
-    end)
+    end) |> Enum.take(@data_retention_days)
   end
   def do_process_event(view_model, highest_version, %{version: version} = _) when highest_version >= version do
     {highest_version, view_model}

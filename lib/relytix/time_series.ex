@@ -10,7 +10,7 @@ defmodule Relytix.TimeSeries do
     all_datetimes =
       Interval.new(from: Date.from(first_date), until: Date.from(last_date))
       |> Interval.with_step(secs: 1)
-      |> Enum.map(fn (v) -> {{v.year, v.month, v.day}, {v.hour, v.minute, v.second}} end)
+      |> Enum.map(fn (v) -> {{v.year, v.month, v.day}, {0, 0, 0}} end)
       |> Enum.into HashSet.new
     view_model_date_set = Enum.into(dates, HashSet.new)
     Enum.reduce(Set.difference(all_datetimes, view_model_date_set), view_model, fn(date, old_view_model) ->
